@@ -5,12 +5,12 @@ var fs      = require('fs');
 var connection = 'postgres://dlbbsvuarifngz:b194a723dfe33f623dd721b44bf064bb82ca7a9554947a1f7f943a533f7636cb@ec2-54-163-233-89.compute-1.amazonaws.com:5432/dl6islujmsp1u?ssl=true';
 var pg = new pg.Client(connection);
 
-module.exports.insertCourses = function(req, res) {
+module.exports.insertCSV = function(file, table) {
     pg.connect();
 
     var row, j, value, query, date;
 
-    fs.readFile('./server/csv/Courses.csv', 'utf-8', function (err, data) {
+    fs.readFile('./server/csv/' + file, 'utf-8', function (err, data) {
         if (err) {
             console.log(err);
         }
@@ -24,7 +24,7 @@ module.exports.insertCourses = function(req, res) {
             data.splice(0, 1);
 
             // build insert statement
-            query = 'INSERT INTO Courses(';
+            query = 'INSERT INTO ' + table + '(';
 
             for (i of columns) {
                 if (i === 'When' || i === 'Where' || i === 'Name') {
@@ -86,29 +86,13 @@ module.exports.insertCourses = function(req, res) {
 
             // insert into the database
             var insertResult = pg.query(query, function(err) {
-                console.log(err);
+                if (err) {
+                    console.log(err);
+                }
             });
 
             insertResult.on('end', function() { pg.end(); });
         });
 
     });
-}
-
-module.exports.insertStudents = function(req, res) {
-    pg.connect();
-
-    pg.end();
-}
-
-module.exports.insertRegistration = function(req, res) {
-    pg.connect();
-
-    pg.end();
-}
-
-module.exports.insertContactInformation = function(req, res) {
-    pg.connect();
-
-    pg.end();
 }

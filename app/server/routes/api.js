@@ -15,7 +15,22 @@ module.exports = function(app, express) {
     });
 
     apiRouter.get('/insertcourses', function(req, res) {
-        csvService.insertCourses();
+        csvService.insertCSV('Courses.csv', 'Courses');
+        res.json({ message: 'get works' });
+    });
+
+    apiRouter.get('/insertstudents', function(req, res) {
+        csvService.insertCSV('Students.csv', 'Students');
+        res.json({ message: 'get works' });
+    });
+
+    apiRouter.get('/insertregistration', function(req, res) {
+        csvService.insertCSV('Registration.csv', 'Registration');
+        res.json({ message: 'get works' });
+    });
+
+    apiRouter.get('/insertcontactinformation', function(req, res) {
+        csvService.insertCSV('Contact_Information.csv', 'Contact_Information');
         res.json({ message: 'get works' });
     });
 
