@@ -8,7 +8,7 @@ var pg = new pg.Client(connection);
 module.exports.insertCourses = function(req, res) {
     pg.connect();
 
-    var row, j, value, query;
+    var row, j, value, query, date;
 
     fs.readFile('./server/csv/Courses.csv', 'utf-8', function (err, data) {
         if (err) {
@@ -45,7 +45,7 @@ module.exports.insertCourses = function(req, res) {
                     query += '(';
                     for (j = 0; j < row.length; j = j + 1) {
                         if (row[j] === '') {
-                            query += '\'\'';
+                            query += '\'\',';
                             continue;
                         }
 
@@ -59,7 +59,8 @@ module.exports.insertCourses = function(req, res) {
                         }
 
                         if (columns[0] === 'Course_ID' && j === 4) {
-                            value = new Date(row[j]);
+                            value = new Date(row[j]).toISOString();
+                            console.log(value);
                             query += value;
                         }
                         else {
