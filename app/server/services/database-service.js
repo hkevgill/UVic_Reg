@@ -7,7 +7,7 @@ module.exports.create = function(req, res) {
     pg.connect();
 
     var createCourses = pg.query(
-        'CREATE TABLE Courses(Course_ID SERIAL PRIMARY KEY, Description VARCHAR(800), "Where" TIMESTAMP WITH TIME ZONE, "When" TIMESTAMP WITH TIME ZONE);'
+        'CREATE TABLE Courses(Course_ID SERIAL PRIMARY KEY, Name VARCHAR(300), Description VARCHAR(800), "Where" VARCHAR(300), "When" TIMESTAMP WITH TIME ZONE);'
     );
 
     var students = function() {
