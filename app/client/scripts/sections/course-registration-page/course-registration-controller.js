@@ -5,6 +5,7 @@ angular.module('uvicApp').controller('course-registration-controller', function 
     var i;
     var offset;
 
+    // get all courses on page load
     courseFactory.getCourses().then(function(data) {
         $scope.courses = data.rows;
 

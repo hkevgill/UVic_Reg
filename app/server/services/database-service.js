@@ -1,6 +1,7 @@
 var pg = require('pg');
 var moment = require('moment');
 
+// database settings
 var config = {
     user: 'dlbbsvuarifngz',
     database: 'dl6islujmsp1u',
@@ -12,8 +13,10 @@ var config = {
     idleTimeoutMillis: 30000, // how long a client is allowed to remain idle before being closed
 };
 
+// use a connection pool
 var pool = new pg.Pool(config);
 
+// create the database tables
 module.exports.create = function(req, res) {
     pool.connect(function(err, client, done) {
 
@@ -63,6 +66,7 @@ module.exports.create = function(req, res) {
     });
 }
 
+// get a list of all courses
 module.exports.getCourses = function(req, res) {
     pool.connect(function(err, client, done) {
         if(err) {
@@ -83,6 +87,8 @@ module.exports.getCourses = function(req, res) {
     });
 }
 
+// get everything needed for the edit course page
+// the course, students registered, and a list of all students for the dropdown
 module.exports.getEditCourseInfo = function(req, res) {
 
     var data = {};
@@ -135,6 +141,7 @@ module.exports.getEditCourseInfo = function(req, res) {
     });
 }
 
+// save new course information
 module.exports.updateCourse = function(req, res) {
 
     pool.connect(function(err, client, done) {
@@ -158,6 +165,7 @@ module.exports.updateCourse = function(req, res) {
     });
 }
 
+// insert new student into registrations table
 module.exports.addStudent = function(req, res) {
     pool.connect(function(err, client, done) {
         if(err) {
@@ -178,6 +186,7 @@ module.exports.addStudent = function(req, res) {
     });
 }
 
+// delete student from registrations table
 module.exports.deleteStudent = function(req, res) {
     pool.connect(function(err, client, done) {
         if(err) {

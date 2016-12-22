@@ -3,6 +3,7 @@ var csv     = require('csv');
 var fs      = require('fs');
 var moment  = require('moment');
 
+// database settings
 var config = {
     user: 'dlbbsvuarifngz',
     database: 'dl6islujmsp1u',
@@ -14,8 +15,10 @@ var config = {
     idleTimeoutMillis: 30000, // how long a client is allowed to remain idle before being closed
 };
 
+// connection pool for db
 var pool = new pg.Pool(config);
 
+// parse insert given csv file into given table
 module.exports.insertCSV = function(file, table) {
     pool.connect(function(err, client, done) {
         if(err) {
@@ -24,11 +27,13 @@ module.exports.insertCSV = function(file, table) {
 
         var row, j, value, query, date;
 
+        // read the csv file
         fs.readFile('./server/csv/' + file, 'utf-8', function (err, data) {
             if (err) {
                 console.log(err);
             }
             
+            // use csv library to parse
             csv.parse(data, function(err, data) {
 
                 // get column names
@@ -40,6 +45,7 @@ module.exports.insertCSV = function(file, table) {
                 // build insert statement
                 query = 'INSERT INTO ' + table + '(';
 
+                // when and where are keywords, need quotes around them
                 for (i of columns) {
                     if (i === 'When' || i === 'Where') {
                         query += ('"' + i + '",');
@@ -55,6 +61,7 @@ module.exports.insertCSV = function(file, table) {
                 query += ') VALUES';
 
                 for (row of data) {
+                    // make sure row has pk
                     if (row[0] !== '' && row[0] !== null && row[0] !== undefined) {
                         query += '(';
                         for (j = 0; j < row.length; j = j + 1) {
@@ -63,15 +70,18 @@ module.exports.insertCSV = function(file, table) {
                                 continue;
                             }
 
+                            // pk is a serial value, use DEFAULT to auto increment
                             if (j === 0) {
                                 query += 'DEFAULT,';
                                 continue;
                             }
 
+                            // strings need quotes
                             if(isNaN(row[j])) {
                                 query += '\'';
                             }
 
+                            // deal with the only time field (in the courses table)
                             if (columns[0] === 'Course_ID' && j === 4) {
                                 query = query.substring(0, query.length - 1);
                                 value = moment(row[j]).utc().unix();
@@ -82,6 +92,7 @@ module.exports.insertCSV = function(file, table) {
                                 query += row[j];
                             }
 
+                            // closing quote on strings
                             if(isNaN(row[j])) {
                                 query += '\'';
                             }
@@ -89,11 +100,13 @@ module.exports.insertCSV = function(file, table) {
                             query += ',';
                         }
 
+                        // strip of final comma and close bracket
                         query = query.substring(0, query.length - 1);
                         query += '), ';
                     }
                 }
 
+                // strip off space and comma and end the sql statement
                 query = query.substring(0, query.length - 2);
                 query += ';';
 
