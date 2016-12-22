@@ -5,15 +5,6 @@ module.exports = function(app, express) {
 
     var apiRouter = express.Router();
 
-    apiRouter.get('/', function(req, res) {
-        res.json({ message: 'get works' });
-    });
-
-    apiRouter.post('/', function(req, res) {
-        console.log(req.body);
-        res.json({ message: 'post works!' });
-    });
-
     // get all courses
     apiRouter.get('/courses', function(req, res) {
         databaseService.getCourses(req, res)
@@ -21,8 +12,22 @@ module.exports = function(app, express) {
 
     // get specific course and all students attending it and a list of all students
     apiRouter.get('/courses/:courseId', function(req, res) {
-        console.log(req.params.courseId);
         databaseService.getEditCourseInfo(req, res);
+    });
+
+    // add student to course
+    apiRouter.post('/addstudent', function(req, res) {
+        databaseService.addStudent(req, res)
+    });
+
+    // delete student from course
+    apiRouter.post('/deletestudent', function(req, res) {
+        databaseService.deleteStudent(req, res)
+    });
+
+    // update course information
+    apiRouter.put('/updatecourse', function(req, res) {
+        databaseService.updateCourse(req, res)
     });
 
     // insert courses csv to courses table

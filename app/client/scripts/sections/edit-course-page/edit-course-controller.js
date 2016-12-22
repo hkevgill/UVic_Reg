@@ -15,15 +15,34 @@ angular.module('uvicApp').controller('edit-course-controller', function ($scope,
     });
 
     $scope.addStudent = function() {
-        console.log($scope.selections.selectedStudent);
+
+        var body = {
+            studentId: $scope.selections.selectedStudent,
+            courseId: $scope.courseId
+        };
+
+        courseFactory.addStudent(body).then(function(data) {
+            console.log(data);
+        });
     };
 
     $scope.deleteStudent = function(student) {
-        console.log(student);
+
+        var body = {
+            student: student,
+            courseId: $scope.courseId
+        }
+
+        courseFactory.deleteStudent(body).then(function(data) {
+            console.log(data);
+        });
     };
 
     $scope.saveCourse = function() {
-        console.log($scope.course);
+
+        courseFactory.updateCourseInfo($scope.course).then(function(data) {
+            console.log(data);
+        });
     };
 
 });

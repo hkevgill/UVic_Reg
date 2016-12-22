@@ -60,7 +60,6 @@ module.exports.insertCSV = function(file, table) {
 
                         if (columns[0] === 'Course_ID' && j === 4) {
                             value = new Date(row[j]).toISOString();
-                            console.log(value);
                             query += value;
                         }
                         else {
