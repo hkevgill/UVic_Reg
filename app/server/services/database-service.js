@@ -142,9 +142,9 @@ module.exports.updateCourse = function(req, res) {
             return console.error('error fetching client from pool', err);
         }
 
-        req.body.When = value = new Date(req.body.When).toISOString();
+        req.body.When = moment(req.body.When).utc().unix();;
 
-        client.query('UPDATE Courses SET "Name" = $1::text, description = $2::text, "Where" = $3::text, "When" = $4::timestamp without time zone WHERE Course_ID = $5::int RETURNING *', [req.body.Name, req.body.description, req.body.Where, req.body.When, req.body.course_id], function(err, result) {
+        client.query('UPDATE Courses SET name = $1::text, description = $2::text, "Where" = $3::text, "When" = to_timestamp(' + req.body.When + ') WHERE Course_ID = $4::int RETURNING *', [req.body.name, req.body.description, req.body.Where, req.body.course_id], function(err, result) {
 
             //call `done()` to release the client back to the pool
             done();

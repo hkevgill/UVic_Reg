@@ -13,7 +13,7 @@
                     <div class="form-group row">
                         <label for="course-name" class="col-xs-2 col-form-label">Course</label>
                         <div class="col-xs-10">
-                            <input class="form-control" type="text" ng-model="course.Name" id="course-name">
+                            <input class="form-control" type="text" ng-model="course.name" id="course-name">
                         </div>
                     </div>
 
@@ -38,7 +38,14 @@
                     <div class="form-group row">
                         <label for="course-when" class="col-xs-2 col-form-label">When</label>
                         <div class="col-xs-10">
-                            <input class="form-control" type="text" ng-model="course.When" id="course-when">
+                            <div
+                                moment-picker="course.When"
+                                format="DD-MMM-YYYY h:mm A"
+                                min-view="month"
+                                today="true"
+                                min-date="rightnow">
+                                <input class="form-control" type="text" ng-model="course.When" id="course-when">
+                            </div>
                         </div>
                     </div>
 

@@ -18,10 +18,10 @@
             <tbody>
                 <tr ng-repeat="entry in courses track by $index">
                     <td><a ui-sref="edit({ courseId: entry.course_id })">Edit</a></td>
-                    <td>{{ entry.Name }}</td>
+                    <td>{{ entry.name }}</td>
                     <td>{{ entry.description }}</td>
                     <td>{{ entry.Where }}</td>
-                    <td>{{ entry.When | date : "d-MMM-yyyy h:mm a" }}</td>
+                    <td>{{ entry.When }}</td>
                 </tr>
             </tbody>
         </table>

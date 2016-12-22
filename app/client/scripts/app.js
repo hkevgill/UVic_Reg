@@ -1,6 +1,6 @@
 'use strict'
 
-var uvicApp = angular.module('uvicApp', ['ui.router']);
+var uvicApp = angular.module('uvicApp', ['ui.router', 'moment-picker']);
 
 uvicApp.config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
 
