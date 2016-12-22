@@ -31,6 +31,12 @@ module.exports = function(app, express) {
     });
 
     // insert courses csv to courses table
+    apiRouter.get('/createtables', function(req, res) {
+        databaseService.create(req, res);
+        res.json({ message: 'success' });
+    });
+
+    // insert courses csv to courses table
     apiRouter.get('/insertcourses', function(req, res) {
         csvService.insertCSV('Courses.csv', 'Courses');
         res.json({ message: 'success' });
