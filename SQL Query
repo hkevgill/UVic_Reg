@@ -1,0 +1,9 @@
+SQL Query:
+
+List all upcoming courses, their registered students, and the student's primary email
+
+SELECT DISTINCT C.course_id as course_id, C."name" as "name", S.student_id as student_id, S.first_name as first_name, S.last_name as last_name, ci.email as email
+FROM (Courses AS C JOIN Registration AS R using(Course_ID))
+    JOIN
+(Students AS S JOIN Contact_Information AS CI using(student_ID)) using(Student_ID)
+WHERE C."When" >= CURRENT_TIMESTAMP and Primary_YN = 'Y';
