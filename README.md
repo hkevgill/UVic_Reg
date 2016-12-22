@@ -2,9 +2,13 @@
 ---
 ### Architecture
 uvicApp is a simple registration app built using node.js and angular.js with a postgresql database. The architecture is as follows:
+
 ![Architecture](images/architecture.png)
+
 The ER diagram for the database is here:
+
 ![ER](images/er.png)
+
 ---
 ### Deployment
 ---
