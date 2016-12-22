@@ -1,0 +1,30 @@
+<div class="course-registration-page">
+
+    <div class="heading">
+        <h3>Course Registration</h3>
+    </div>
+
+    <div class="data-table">
+        <table class="table">
+            <thead>
+                <tr>
+                <th></th>
+                <th>Course</th>
+                <th>Description</th>
+                <th>Where</th>
+                <th>When</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="entry in courses track by $index">
+                    <td><a ui-sref="edit({ courseId: entry.course_id })">Edit</a></td>
+                    <td>{{ entry.Name }}</td>
+                    <td>{{ entry.description }}</td>
+                    <td>{{ entry.Where }}</td>
+                    <td>{{ entry.When | date : "d-MMM-yyyy h:mm a" }}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+</div>

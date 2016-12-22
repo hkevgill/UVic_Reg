@@ -1,0 +1,86 @@
+<div class="container">
+    <div class="row">
+
+        <div class="col-sm-6">
+            <div class="heading">
+                <h3>Edit Course</h3>
+            </div>
+
+            <div class="course-container">
+                <form>
+                    <!-- course name -->
+                    <div class="form-group row">
+                        <label for="course-name" class="col-xs-2 col-form-label">Course</label>
+                        <div class="col-xs-5">
+                            <input class="form-control" type="text" ng-model="course.Name" id="course-name">
+                        </div>
+                    </div>
+
+                    <!-- course description -->
+                    <div class="form-group row">
+                        <label for="course-description" class="col-xs-2 col-form-label">Description</label>
+                        <div class="col-xs-5">
+                            <input class="form-control" type="text" ng-model="course.description" id="course-description">
+                        </div>
+                    </div>
+
+                    <!-- course where -->
+                    <div class="form-group row">
+                        <label for="course-where" class="col-xs-2 col-form-label">Where</label>
+                        <div class="col-xs-5">
+                            <input class="form-control" type="text" ng-model="course.Where" id="course-where">
+                        </div>
+                    </div>
+
+                    <!-- course when -->
+                    <div class="form-group row">
+                        <label for="course-when" class="col-xs-2 col-form-label">When</label>
+                        <div class="col-xs-5">
+                            <input class="form-control" type="text" ng-model="course.When" id="course-when">
+                        </div>
+                    </div>
+
+                    <button ng-click="saveCourse()">Save</button>
+                </form>
+            </div>
+        </div>
+
+        <div class="col-sm-6">
+            <div class="heading">
+                <h3>Registration</h3>
+            </div>
+
+            <div class="student-container">
+
+                <div class="student-registration">
+                    <select class="selectpicker" ng-model="selections.selectedStudent">
+                        <option ng-repeat="student in students" value="{{ student.student_id }}">{{ student.first_name }} {{ student.last_name }}</option>
+                    </select>
+
+                    <button ng-click="addStudent()">Add</button>
+                </div>
+
+                <div class="data-table">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                            <th>First Name</th>
+                            <th>Last Name</th>
+                            <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="student in registeredStudents track by $index">
+                                <td>{{ student.first_name }}</td>
+                                <td>{{ student.last_name }}</td>
+                                <td><a ng-click="deleteStudent(student)">Delete</a></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+</div>
