@@ -9,6 +9,7 @@
  - When a user is happy with the changes to a course they can click Save and the data will be saved.
 
 ### Architecture
+---
 uvicApp is a simple registration app built using node.js and angular.js with a postgresql database. The architecture is as follows:
 
 ![Architecture](images/architecture.png)
