@@ -1,6 +1,9 @@
 {
   "name": "uvic-reg",
   "main": "server.js",
+  "engines": {
+    "node": "5.8.0"
+  },
   "dependencies": {
     "angular-moment-picker": "^0.8.4",
     "body-parser": "^1.15.2",
