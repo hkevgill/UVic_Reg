@@ -18,8 +18,7 @@ angular.module('uvicApp').controller('edit-course-controller', function ($scope,
         $scope.course = data.course;
 
         // convert from utc to local
-        offset = moment($scope.course.When).utcOffset();
-        $scope.course.When = moment($scope.course.When).add(offset, 'minutes').format('DD-MMM-YYYY h:mm A');
+        $scope.course.When = moment($scope.course.When).format('DD-MMM-YYYY h:mm A');
 
         $scope.students = data.students;
 
@@ -100,8 +99,7 @@ angular.module('uvicApp').controller('edit-course-controller', function ($scope,
             console.log($scope.course);
 
             // convert from utc to local
-            var offset = moment($scope.course.When).utcOffset();
-            $scope.course.When = moment($scope.course.When).add(offset, 'minutes').format('DD-MMM-YYYY h:mm A');
+            $scope.course.When = moment($scope.course.When).format('DD-MMM-YYYY h:mm A');
 
             $scope.saved = true;
 
