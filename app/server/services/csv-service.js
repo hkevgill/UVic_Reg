@@ -84,7 +84,7 @@ module.exports.insertCSV = function(file, table) {
                             // deal with the only time field (in the courses table)
                             if (columns[0] === 'Course_ID' && j === 4) {
                                 query = query.substring(0, query.length - 1);
-                                value = moment(row[j]).utc().unix();
+                                value = moment(row[j]).unix();
                                 query += ('to_timestamp(' + value + '),');
                                 continue
                             }
