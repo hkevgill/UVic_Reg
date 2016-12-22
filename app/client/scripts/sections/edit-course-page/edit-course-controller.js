@@ -96,7 +96,6 @@ angular.module('uvicApp').controller('edit-course-controller', function ($scope,
 
         courseFactory.updateCourseInfo($scope.course).then(function(data) {
             $scope.course = data.rows[0];
-            console.log($scope.course);
 
             // convert from utc to local
             $scope.course.When = moment($scope.course.When).format('DD-MMM-YYYY h:mm A');
