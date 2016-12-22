@@ -4,6 +4,9 @@
   "engines": {
     "node": "5.8.0"
   },
+  "scripts": {
+    "start": "node server.js"
+  },
   "dependencies": {
     "angular-moment-picker": "^0.8.4",
     "body-parser": "^1.15.2",
