@@ -131,9 +131,7 @@ module.exports.updateCourse = function(req, res) {
 
         req.body.When = value = new Date(req.body.When).toISOString();
 
-        client.query('UPDATE Courses SET "Name" = $1::text, description = $2::text, "Where" = $3::text, "When" = $4::timestamp without time zone WHERE Course_ID = $5::int', [req.body.Name, req.body.description, req.body.Where, req.body.When, req.body.course_id], function(err, result) {
-
-            console.log(result);
+        client.query('UPDATE Courses SET "Name" = $1::text, description = $2::text, "Where" = $3::text, "When" = $4::timestamp without time zone WHERE Course_ID = $5::int RETURNING *', [req.body.Name, req.body.description, req.body.Where, req.body.When, req.body.course_id], function(err, result) {
 
             //call `done()` to release the client back to the pool
             done();
@@ -153,9 +151,7 @@ module.exports.addStudent = function(req, res) {
             return console.error('error fetching client from pool', err);
         }
 
-        client.query('INSERT INTO Registration(Course_ID, Student_ID) VALUES($1::int, $2::int)', [req.body.courseId, req.body.studentId], function(err, result) {
-
-            console.log(result);
+        var query = client.query('INSERT INTO Registration(Course_ID, Student_ID) VALUES($1::int, $2::int) RETURNING *', [req.body.courseId, req.body.studentId], function(err, result) {
 
             //call `done()` to release the client back to the pool
             done();
@@ -175,9 +171,7 @@ module.exports.deleteStudent = function(req, res) {
             return console.error('error fetching client from pool', err);
         }
 
-        client.query('DELETE FROM Registration WHERE Student_ID = $1::int AND Course_ID = $2', [req.body.student.student_id, req.body.courseId], function(err, result) {
-
-            console.log(result);
+        client.query('DELETE FROM Registration WHERE Student_ID = $1::int AND Course_ID = $2 RETURNING *', [req.body.student.student_id, req.body.courseId], function(err, result) {
 
             //call `done()` to release the client back to the pool
             done();

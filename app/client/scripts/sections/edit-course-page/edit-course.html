@@ -54,7 +54,7 @@
 
                 <div class="student-registration">
                     <select class="selectpicker" ng-model="selections.selectedStudent">
-                        <option ng-repeat="student in students" value="{{ student.student_id }}">{{ student.first_name }} {{ student.last_name }}</option>
+                        <option ng-repeat="student in dropdownStudents | orderBy:'last_name'" value="{{ student.student_id }}">{{ student.first_name }} {{ student.last_name }}</option>
                     </select>
 
                     <button ng-click="addStudent()">Add</button>
