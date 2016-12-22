@@ -9,7 +9,6 @@ The ER diagram for the database is here:
 
 ![ER](images/er.png)
 
----
 ### Deployment
 ---
 uvicApp is deployed on heroku at:
