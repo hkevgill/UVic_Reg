@@ -1,4 +1,5 @@
-<div class="container">
+<div class="edit-course-page container">
+
     <div class="row">
 
         <div class="col-sm-6">
@@ -11,7 +12,7 @@
                     <!-- course name -->
                     <div class="form-group row">
                         <label for="course-name" class="col-xs-2 col-form-label">Course</label>
-                        <div class="col-xs-5">
+                        <div class="col-xs-10">
                             <input class="form-control" type="text" ng-model="course.Name" id="course-name">
                         </div>
                     </div>
@@ -19,15 +20,16 @@
                     <!-- course description -->
                     <div class="form-group row">
                         <label for="course-description" class="col-xs-2 col-form-label">Description</label>
-                        <div class="col-xs-5">
-                            <input class="form-control" type="text" ng-model="course.description" id="course-description">
+                        <div class="col-xs-10">
+                            <textarea class="form-control description-text" ng-model="course.description" name="course-description">
+                            </textarea>
                         </div>
                     </div>
 
                     <!-- course where -->
                     <div class="form-group row">
                         <label for="course-where" class="col-xs-2 col-form-label">Where</label>
-                        <div class="col-xs-5">
+                        <div class="col-xs-10">
                             <input class="form-control" type="text" ng-model="course.Where" id="course-where">
                         </div>
                     </div>
@@ -35,12 +37,15 @@
                     <!-- course when -->
                     <div class="form-group row">
                         <label for="course-when" class="col-xs-2 col-form-label">When</label>
-                        <div class="col-xs-5">
+                        <div class="col-xs-10">
                             <input class="form-control" type="text" ng-model="course.When" id="course-when">
                         </div>
                     </div>
 
-                    <button ng-click="saveCourse()">Save</button>
+                    <div class="text-center">
+                        <button class="btn btn-default" ng-click="saveCourse()">Save</button>
+                        <span ng-if="saved" class="green">&nbsp;Saved!</span>
+                    </div>
                 </form>
             </div>
         </div>
@@ -57,7 +62,7 @@
                         <option ng-repeat="student in dropdownStudents | orderBy:'last_name'" value="{{ student.student_id }}">{{ student.first_name }} {{ student.last_name }}</option>
                     </select>
 
-                    <button ng-click="addStudent()">Add</button>
+                    <button class="btn btn-default" ng-click="addStudent()">Add</button>
                 </div>
 
                 <div class="data-table">

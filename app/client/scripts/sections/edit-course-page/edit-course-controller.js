@@ -1,8 +1,10 @@
 'use strict';
 
-angular.module('uvicApp').controller('edit-course-controller', function ($scope, $stateParams, courseFactory) {
+angular.module('uvicApp').controller('edit-course-controller', function ($scope, $stateParams, $timeout, courseFactory) {
 
     $scope.courseId = $stateParams.courseId;
+
+    $scope.saved = false;
 
     var i;
 
@@ -79,6 +81,10 @@ angular.module('uvicApp').controller('edit-course-controller', function ($scope,
 
         courseFactory.updateCourseInfo($scope.course).then(function(data) {
             $scope.course = data.rows[0];
+            $scope.saved = true;
+            $timeout(function () {
+                $scope.saved = false;
+            }, 3000);
         });
     };
 
