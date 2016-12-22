@@ -1,5 +1,6 @@
 {
   "scripts": {
-    "postinstall": "cd app && npm install"
+    "postinstall": "cd app && npm install",
+    "start": "node server.js"
   }
 }
