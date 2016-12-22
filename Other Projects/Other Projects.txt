@@ -1,0 +1,20 @@
+1. Linksupp
+www.linksupp.com
+- Linksupp is a web application that shows you where people are eating around you and lets you join them for a meal.
+- Linksupp started in a course at UVic called Startup Programming but has since changed dramatically. The original Github repo is here: https://github.com/nfeliciano/mangiamo
+- The web app is live at: www.linksupp.com and has since been reimplemented and resdesigned from the ground up using Angular, Django, and Postgres. The front-end is deployed in Amazon S3 with Cloudfront caching copies of the S3 bucket across the globe. The server is hosted on Heroku and provides an API for meals, accounts, and other necessary features.
+- There is little to no documentation for the existing version of Linksupp and the repositories are private as they contain passwords and API keys.
+- I was instrumental in picking the technologies, handled all deployments, setup the different environments, and was the lead backend developer.
+
+2. Roomba Tank
+- As part of a group of 2 in CSC 460 at UVic, I contributed to implementing a real-time operating system (rtos) in C and Assembly language.
+- All 3 reports can be found online at: www.roombatank.com.
+- Project 1 was getting familiar with the equipment, project 2 was implementing the rtos, and project 3 was writing an application on top of the rtos that controlled a Roomba with many sensors and actuators.
+- My group placed 2nd in the class competition when the tanks battled.
+- My partner and I worked on every aspect of this project together, including report writing and pair programming, so I was involved in every aspect you see.
+
+3. SRS
+- I was the coordinator for this project, I distributed work, answered questions, put the report together, and helped my team members with their sections of the report.
+- This project was done as part of SENG 321 at UVic.
+- This project later led to my same team analyzing Sendwithus' (the Victoria startup) requirements gathering processes and reporting and presenting on them, unfortunately due to non-disclosure agreements I am unable to share that report.
+- This SRS is attached and located in the Github repo as SRS.pdf.
