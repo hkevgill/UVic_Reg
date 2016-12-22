@@ -1,6 +1,6 @@
 {
   "scripts": {
     "postinstall": "cd app && npm install",
-    "start": "node server.js"
+    "start": "cd app && node server.js"
   }
 }
